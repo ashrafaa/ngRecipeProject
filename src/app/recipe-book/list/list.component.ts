@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,6 +7,8 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./list.component.css']
 })
 export class RecipeListComponent {
+  @Output() chosenRecipe = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
     new Recipe(
       "Nasi lemak",
@@ -19,4 +21,8 @@ export class RecipeListComponent {
       "https://c1.staticflickr.com/4/3081/4553382417_9ddb5531fa_b.jpg"
     )
   ];
+
+  onRecipeSelected(selectedRecipe: Recipe) {
+    this.chosenRecipe.emit(selectedRecipe);
+  }
 }
