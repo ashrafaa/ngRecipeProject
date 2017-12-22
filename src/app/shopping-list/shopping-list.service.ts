@@ -1,12 +1,19 @@
 import { Ingredient } from '../shared/ingredient.model';
+import { EventEmitter } from '@angular/core';
 
 export class ShoppingListService {
-  private ingredient = [
+  ingredientsChanged = new EventEmitter<Ingredient[]>();
+  private ingredients = [
     new Ingredient('Apple', '6'),
     new Ingredient('Egg', '12')
   ];
 
   getIngredient() {
-    return this.ingredient.slice();
+    return this.ingredients.slice();
+  }
+
+  addToIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+    this.ingredientsChanged.emit(this.ingredients);
   }
 }
