@@ -1,3 +1,4 @@
-<p>
-  edit works!
-</p>
+<p *ngIf="editMode; else newMode">Edit here</p>
+<ng-template #newMode>
+  <p>New here</p>
+</ng-template>
